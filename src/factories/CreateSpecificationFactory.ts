@@ -2,7 +2,7 @@ import { SpecificationsRepository } from '../modules/cars/repositories/implement
 import { CreateSpecification } from '../modules/cars/useCases/CreateSpecification/CreateSpecification';
 import { CreateSpecificationController } from '../modules/cars/useCases/CreateSpecification/CreateSpecificationController';
 
-const CreateSpecificationFactory = () => {
+const CreateSpecificationFactory = (): CreateSpecificationController => {
   const specificationRepository = SpecificationsRepository.getInstance();
 
   const createSpecification = new CreateSpecification(specificationRepository);

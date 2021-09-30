@@ -1,3 +1,5 @@
+import { getRepository, Repository } from 'typeorm';
+
 import { Category } from '../../domain/Category';
 import {
   ICategoriesRepository,
@@ -5,28 +7,20 @@ import {
 } from '../ICategoriesRepository';
 
 class CategoriesRepository implements ICategoriesRepository {
-  private categories: Category[];
+  private repository: Repository<Category>;
 
-  private static INSTANCE: CategoriesRepository;
-
-  private constructor() {
-    this.categories = [];
-  }
-
-  public static getInstance(): CategoriesRepository {
-    if (!CategoriesRepository.INSTANCE) {
-      CategoriesRepository.INSTANCE = new CategoriesRepository();
-    }
-
-    return CategoriesRepository.INSTANCE;
+  constructor() {
+    this.repository = getRepository(Category);
   }
 
   async findAll(): Promise<Category[]> {
-    return this.categories;
+    const categories = await this.repository.find();
+
+    return categories;
   }
 
   async findById(id: string): Promise<Category> {
-    const category = this.categories.find((category) => category.id === id);
+    const category = await this.repository.findOne(id);
 
     if (!category) return null;
 
@@ -34,7 +28,7 @@ class CategoriesRepository implements ICategoriesRepository {
   }
 
   async findByName(name: string): Promise<Category> {
-    const category = this.categories.find((category) => category.name === name);
+    const category = await this.repository.findOne({ where: { name } });
 
     if (!category) {
       return null;
@@ -44,32 +38,29 @@ class CategoriesRepository implements ICategoriesRepository {
   }
 
   async create({ name, description }: ICreateCategoryDTO): Promise<void> {
-    const category = new Category();
-
-    Object.assign(category, {
+    const category = this.repository.create({
       name,
       description,
-      createdAt: new Date(),
     });
 
-    this.categories.push(category);
+    await this.repository.save(category);
   }
 
   async save(category: Category): Promise<void> {
-    const categoryIndex = this.categories.findIndex(
-      (findCategory) => findCategory.id === category.id
-    );
+    const categoryExists = await this.repository.findOne({
+      where: { id: category.id },
+    });
 
     // eslint-disable-next-line no-unused-expressions
-    this.categories[categoryIndex] = category;
+    await this.repository.save(categoryExists);
   }
 
   async remove(category: Category): Promise<void> {
-    const categoryIndex = this.categories.findIndex(
-      (findCategory) => findCategory.id === category.id
-    );
+    const categoryExists = await this.repository.findOne({
+      where: { id: category.id },
+    });
 
-    this.categories.splice(categoryIndex, 1);
+    await this.repository.remove(categoryExists);
   }
 }
 

@@ -2,8 +2,8 @@ import { CategoriesRepository } from '../modules/cars/repositories/implementatio
 import { CreateCategory } from '../modules/cars/useCases/CreateCategory/CreateCategory';
 import { CreateCategoryController } from '../modules/cars/useCases/CreateCategory/CreateCategoryController';
 
-const CreateCategoryFactory = () => {
-  const categoryRepository = CategoriesRepository.getInstance();
+const CreateCategoryFactory = (): CreateCategoryController => {
+  const categoryRepository = new CategoriesRepository();
   const createCategory = new CreateCategory(categoryRepository);
   const createCategoryController = new CreateCategoryController(createCategory);
 
