@@ -2,6 +2,7 @@ import express from 'express';
 import swaggerUI from 'swagger-ui-express';
 
 import './database';
+import './infra/container';
 
 import { configSwagger } from './config/swagger';
 import { router } from './routes';
