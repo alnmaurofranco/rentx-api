@@ -1,3 +1,5 @@
+import { inject, injectable } from 'tsyringe';
+
 import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
 type CreateCategoryRequest = {
@@ -7,8 +9,12 @@ type CreateCategoryRequest = {
 
 type CreateCategoryResponse = void;
 
+@injectable()
 class CreateCategory {
-  constructor(private readonly categoriesRepository: ICategoriesRepository) {}
+  constructor(
+    @inject('CategoriesRepository')
+    private readonly categoriesRepository: ICategoriesRepository
+  ) {}
 
   async execute({
     name,

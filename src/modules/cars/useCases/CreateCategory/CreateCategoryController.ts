@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
 import { CreateCategory } from './CreateCategory';
 
@@ -8,14 +9,14 @@ type CreateCategoryControllerRequest = {
 };
 
 class CreateCategoryController {
-  constructor(private readonly createCategory: CreateCategory) {}
-
   async handle(request: Request, response: Response): Promise<Response> {
     try {
       const { name, description } =
         request.body as CreateCategoryControllerRequest;
 
-      await this.createCategory.execute({ name, description });
+      const createCategory = container.resolve(CreateCategory);
+
+      await createCategory.execute({ name, description });
 
       return response.status(201).send();
     } catch (error) {
