@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
-import { CreateSpecificationFactory } from '../factories/CreateSpecificationFactory';
+import { CreateSpecificationController } from '../modules/cars/useCases/CreateSpecification/CreateSpecificationController';
 
 const specificationsRouter = Router();
 
-specificationsRouter.post('/', async (request, response) => {
-  return CreateSpecificationFactory().handle(request, response);
-});
+const createSpecificationController = new CreateSpecificationController();
+
+specificationsRouter.post('/', createSpecificationController.handle);
 
 export { specificationsRouter };

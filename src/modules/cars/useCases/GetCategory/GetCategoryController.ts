@@ -1,15 +1,16 @@
 import { Response, Request } from 'express';
+import { container } from 'tsyringe';
 
 import { GetCategory } from './GetCategory';
 
 class GetCategoryController {
-  constructor(private readonly getCategory: GetCategory) {}
-
   async handle(request: Request, response: Response): Promise<Response> {
     try {
       const { id } = request.params;
 
-      const category = await this.getCategory.execute(id);
+      const getCategory = container.resolve(GetCategory);
+
+      const category = await getCategory.execute(id);
 
       if (!category)
         return response.status(400).json({ error: 'Category not found.' });

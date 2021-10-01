@@ -1,3 +1,5 @@
+import { inject, injectable } from 'tsyringe';
+
 import { ISpecificationsRepository } from '../../repositories/ISpecificationsRepository';
 
 type CreateSpecificationRequest = {
@@ -7,8 +9,10 @@ type CreateSpecificationRequest = {
 
 type CreateSpecificationResponse = void;
 
+@injectable()
 class CreateSpecification {
   constructor(
+    @inject('SpecificationsRepository')
     private readonly specificationsRepository: ISpecificationsRepository
   ) {}
 

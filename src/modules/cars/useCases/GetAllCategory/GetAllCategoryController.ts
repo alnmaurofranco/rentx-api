@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
 import { GetAllCategory } from './GetAllCategory';
 
 class GetAllCategoryController {
-  constructor(private readonly getAllCategory: GetAllCategory) {}
-
   async handle(request: Request, response: Response): Promise<Response> {
     try {
-      const categories = await this.getAllCategory.execute();
+      const getAllCategory = container.resolve(GetAllCategory);
+
+      const categories = await getAllCategory.execute();
 
       return response.json(categories);
     } catch (error) {

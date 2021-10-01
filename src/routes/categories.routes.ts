@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import multer from 'multer';
 
-import { DeleteCategoryFactory } from '../factories/DeleteCategoryFactory';
-import { GetAllCategoryFactory } from '../factories/GetAllCategoryFactory';
-import { GetCategoryFactory } from '../factories/GetCategoryFactory';
-import { ImportCategoryFactory } from '../factories/ImportCategoryFactory';
-import { UpdateCategoryFactory } from '../factories/UpdateCategoryFactory';
 import { CreateCategoryController } from '../modules/cars/useCases/CreateCategory/CreateCategoryController';
+import { DeleteCategoryController } from '../modules/cars/useCases/DeleteCategory/DeleteCategoryController';
+import { GetAllCategoryController } from '../modules/cars/useCases/GetAllCategory/GetAllCategoryController';
+import { GetCategoryController } from '../modules/cars/useCases/GetCategory/GetCategoryController';
+import { ImportCategoryController } from '../modules/cars/useCases/ImportCategory/ImportCategoryController';
+import { UpdateCategoryController } from '../modules/cars/useCases/UpdateCategory/UpdateCategoryController';
 
 const categoriesRouter = Router();
 const upload = multer({
@@ -14,27 +14,26 @@ const upload = multer({
 });
 
 const createCategoryController = new CreateCategoryController();
+const importCategoryController = new ImportCategoryController();
+const getAllCategoryController = new GetAllCategoryController();
+const getCategoryController = new GetCategoryController();
+const updateCategoryController = new UpdateCategoryController();
+const deleteCategoryController = new DeleteCategoryController();
 
-categoriesRouter.post('/import', upload.single('file'), (request, response) => {
-  return ImportCategoryFactory().handle(request, response);
-});
+categoriesRouter.post(
+  '/import',
+  upload.single('file'),
+  importCategoryController.handle
+);
 
 categoriesRouter.post('/', createCategoryController.handle);
 
-categoriesRouter.get('/', async (request, response) => {
-  return GetAllCategoryFactory().handle(request, response);
-});
+categoriesRouter.get('/', getAllCategoryController.handle);
 
-categoriesRouter.get('/:id', async (request, response) => {
-  return GetCategoryFactory().handle(request, response);
-});
+categoriesRouter.get('/:id', getCategoryController.handle);
 
-categoriesRouter.put('/:id', async (request, response) => {
-  return UpdateCategoryFactory().handle(request, response);
-});
+categoriesRouter.put('/:id', updateCategoryController.handle);
 
-categoriesRouter.delete('/:id', async (request, response) => {
-  return DeleteCategoryFactory().handle(request, response);
-});
+categoriesRouter.delete('/:id', deleteCategoryController.handle);
 
 export { categoriesRouter };

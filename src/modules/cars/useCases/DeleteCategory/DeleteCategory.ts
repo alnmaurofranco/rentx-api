@@ -1,3 +1,5 @@
+import { inject, injectable } from 'tsyringe';
+
 import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
 // type DeleteCategoryRequest = {
@@ -6,8 +8,12 @@ import { ICategoriesRepository } from '../../repositories/ICategoriesRepository'
 
 type DeleteCategoryResponse = void;
 
+@injectable()
 class DeleteCategory {
-  constructor(private readonly categoriesRepository: ICategoriesRepository) {}
+  constructor(
+    @inject('CategoriesRepository')
+    private readonly categoriesRepository: ICategoriesRepository
+  ) {}
 
   async execute(id: string): Promise<DeleteCategoryResponse> {
     const category = await this.categoriesRepository.findById(id);

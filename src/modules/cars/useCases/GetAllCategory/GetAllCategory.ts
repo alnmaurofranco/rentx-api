@@ -1,3 +1,5 @@
+import { inject, injectable } from 'tsyringe';
+
 import { Category } from '../../domain/Category';
 import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
@@ -5,8 +7,12 @@ import { ICategoriesRepository } from '../../repositories/ICategoriesRepository'
 
 type GetAllCategoryResponse = Category[];
 
+@injectable()
 class GetAllCategory {
-  constructor(private readonly categoriesRepository: ICategoriesRepository) {}
+  constructor(
+    @inject('CategoriesRepository')
+    private readonly categoriesRepository: ICategoriesRepository
+  ) {}
 
   async execute(): Promise<GetAllCategoryResponse> {
     const categories = await this.categoriesRepository.findAll();
