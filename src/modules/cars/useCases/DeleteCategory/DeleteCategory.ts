@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
+import { AppError } from '../../../../infra/errors/AppError';
 import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
 // type DeleteCategoryRequest = {
@@ -19,7 +20,7 @@ class DeleteCategory {
     const category = await this.categoriesRepository.findById(id);
 
     if (!category) {
-      throw new Error('Category is not found.');
+      throw new AppError('Category is not found.', 400);
     }
 
     await this.categoriesRepository.remove(category);

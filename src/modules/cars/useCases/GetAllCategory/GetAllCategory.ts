@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
+import { AppError } from '../../../../infra/errors/AppError';
 import { Category } from '../../domain/Category';
 import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
@@ -18,7 +19,7 @@ class GetAllCategory {
     const categories = await this.categoriesRepository.findAll();
 
     if (categories.length < 0) {
-      throw new Error('There are currently no categories.');
+      throw new AppError('There are currently no categories.', 400);
     }
 
     return categories;
