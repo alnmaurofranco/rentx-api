@@ -27,6 +27,9 @@ class User {
   @Column('boolean')
   isAdmin: boolean;
 
+  @Column('varchar')
+  avatar: string;
+
   @CreateDateColumn({ type: 'time with time zone' })
   created_at: Date;
 
