@@ -9,7 +9,7 @@ class InMemoryCategoriesRepository implements ICategoriesRepository {
 
   private static INSTANCE: InMemoryCategoriesRepository;
 
-  private constructor() {
+  constructor() {
     this.categories = [];
   }
 
