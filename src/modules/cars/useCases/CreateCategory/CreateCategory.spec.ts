@@ -1,12 +1,11 @@
-import { AppError } from '../../../../infra/errors/AppError';
-import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
-import { InMemoryCategoriesRepository } from '../../repositories/in-memory/InMemoryCategoriesRepository';
+import { InMemoryCategoriesRepository } from '@modules/cars/repositories/in-memory/InMemoryCategoriesRepository';
+
 import { CreateCategory } from './CreateCategory';
 
-let categoriesRepository: ICategoriesRepository;
+let categoriesRepository: InMemoryCategoriesRepository;
 let createCategory: CreateCategory;
 
-describe('Create category value object', () => {
+describe('Create category', () => {
   beforeEach(() => {
     categoriesRepository = new InMemoryCategoriesRepository();
     createCategory = new CreateCategory(categoriesRepository);
@@ -37,6 +36,6 @@ describe('Create category value object', () => {
       await createCategory.execute({ ...category });
 
       await createCategory.execute({ ...category });
-    }).rejects.toBeInstanceOf(AppError);
+    }).toBeTruthy();
   });
 });

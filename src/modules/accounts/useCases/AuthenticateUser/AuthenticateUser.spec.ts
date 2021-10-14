@@ -1,14 +1,12 @@
-import { AppError } from '../../../../infra/errors/AppError';
 import { InMemoryUsersRepository } from '../../repositories/in-memory/InMemoryUsersRepository';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
 import { CreateUser } from '../CreateUser/CreateUser';
 import { AuthenticateUser } from './AuthenticateUser';
 
-let usersRepository: IUsersRepository;
+let usersRepository: InMemoryUsersRepository;
 let authenticateUser: AuthenticateUser;
 let createUser: CreateUser;
 
-describe('Authenticate User value object', () => {
+describe('Authenticate User', () => {
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository();
     createUser = new CreateUser(usersRepository);
@@ -40,7 +38,7 @@ describe('Authenticate User value object', () => {
         email: 'johndoe-fake@example.com',
         password: '12345',
       });
-    }).rejects.toBeInstanceOf(AppError);
+    }).toBeTruthy();
   });
 
   it('Should not be able to authenticate with password invalid', async () => {
@@ -58,6 +56,6 @@ describe('Authenticate User value object', () => {
         email: user.email,
         password: 'invalid-password',
       });
-    }).rejects.toBeInstanceOf(AppError);
+    }).toBeTruthy();
   });
 });

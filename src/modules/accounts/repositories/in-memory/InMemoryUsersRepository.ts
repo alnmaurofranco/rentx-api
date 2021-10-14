@@ -1,9 +1,10 @@
-import { User } from '../../domain/User';
-import { ICreateUserDTO } from '../../dtos';
+import { User } from '@modules/accounts/domain/User';
+import { ICreateUserDTO } from '@modules/accounts/dtos';
+
 import { IUsersRepository } from '../IUsersRepository';
 
 class InMemoryUsersRepository implements IUsersRepository {
-  constructor(private users: User[] = []) {}
+  constructor(public users: User[] = []) {}
 
   async findById(user_id: string): Promise<User> {
     return this.users.find((findUser) => findUser.id === user_id);

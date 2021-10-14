@@ -1,4 +1,5 @@
-import { Specification } from '../../domain/Specification';
+import { Specification } from '@modules/cars/domain/Specification';
+
 import {
   ICreateSpecificationDTO,
   ISpecificationsRepository,
@@ -7,7 +8,7 @@ import {
 class InMemorySpecificationsRepository implements ISpecificationsRepository {
   private static INSTANCE: InMemorySpecificationsRepository;
 
-  private constructor(private specifications: Specification[] = []) {}
+  private constructor(public specifications: Specification[] = []) {}
 
   public static getInstance(): InMemorySpecificationsRepository {
     if (!InMemorySpecificationsRepository.INSTANCE) {

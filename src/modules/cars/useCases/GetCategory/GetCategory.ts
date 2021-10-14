@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 
-import { AppError } from '../../../../infra/errors/AppError';
-import { Category } from '../../domain/Category';
-import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
+import { AppError } from '@infra/http/errors/AppError';
+import { Category } from '@modules/cars/domain/Category';
+import { ICategoriesRepository } from '@modules/cars/repositories/ICategoriesRepository';
 
 // type GetCategoryRequest = {
 //   id: string;

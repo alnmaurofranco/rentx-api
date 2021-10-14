@@ -1,17 +1,14 @@
-import { Category } from '../../domain/Category';
+import { Category } from '@modules/cars/domain/Category';
+
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
 } from '../ICategoriesRepository';
 
 class InMemoryCategoriesRepository implements ICategoriesRepository {
-  private categories: Category[];
-
   private static INSTANCE: InMemoryCategoriesRepository;
 
-  constructor() {
-    this.categories = [];
-  }
+  constructor(public categories: Category[] = []) {}
 
   public static getInstance(): InMemoryCategoriesRepository {
     if (!InMemoryCategoriesRepository.INSTANCE) {

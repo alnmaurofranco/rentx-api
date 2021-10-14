@@ -1,13 +1,14 @@
 import { Router } from 'express';
 import multer from 'multer';
 
+import { CreateCategoryController } from '@modules/cars/useCases/CreateCategory/CreateCategoryController';
+import { DeleteCategoryController } from '@modules/cars/useCases/DeleteCategory/DeleteCategoryController';
+import { GetAllCategoryController } from '@modules/cars/useCases/GetAllCategory/GetAllCategoryController';
+import { GetCategoryController } from '@modules/cars/useCases/GetCategory/GetCategoryController';
+import { ImportCategoryController } from '@modules/cars/useCases/ImportCategory/ImportCategoryController';
+import { UpdateCategoryController } from '@modules/cars/useCases/UpdateCategory/UpdateCategoryController';
+
 import { ensureAuthenticated } from '../middlewares/EnsureAuthenticated';
-import { CreateCategoryController } from '../modules/cars/useCases/CreateCategory/CreateCategoryController';
-import { DeleteCategoryController } from '../modules/cars/useCases/DeleteCategory/DeleteCategoryController';
-import { GetAllCategoryController } from '../modules/cars/useCases/GetAllCategory/GetAllCategoryController';
-import { GetCategoryController } from '../modules/cars/useCases/GetCategory/GetCategoryController';
-import { ImportCategoryController } from '../modules/cars/useCases/ImportCategory/ImportCategoryController';
-import { UpdateCategoryController } from '../modules/cars/useCases/UpdateCategory/UpdateCategoryController';
 
 const categoriesRouter = Router();
 const upload = multer({

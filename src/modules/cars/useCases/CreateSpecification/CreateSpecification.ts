@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
-import { AppError } from '../../../../infra/errors/AppError';
-import { ISpecificationsRepository } from '../../repositories/ISpecificationsRepository';
+import { AppError } from '@infra/http/errors/AppError';
+import { ISpecificationsRepository } from '@modules/cars/repositories/ISpecificationsRepository';
 
 type CreateSpecificationRequest = {
   name: string;

@@ -1,8 +1,8 @@
 import { hash } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 
-import { AppError } from '../../../../infra/errors/AppError';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
+import { AppError } from '@infra/http/errors/AppError';
+import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
 
 type CreateUserRequest = {
   name: string;

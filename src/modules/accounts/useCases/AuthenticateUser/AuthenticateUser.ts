@@ -2,11 +2,11 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
-import { configAuth } from '../../../../config/auth';
-import { AppError } from '../../../../infra/errors/AppError';
-import { IAuthenticateUserDTO } from '../../dtos';
-import { AccountsMapper } from '../../mappers/AccountsMapper';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
+import { configAuth } from '@config/auth';
+import { AppError } from '@infra/http/errors/AppError';
+import { IAuthenticateUserDTO } from '@modules/accounts/dtos';
+import { AccountsMapper } from '@modules/accounts/mappers/AccountsMapper';
+import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
 
 type AuthenticateUserRequest = {
   email: string;

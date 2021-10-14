@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 
-import { AppError } from '../../../../infra/errors/AppError';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
-import { removeAvatarFile } from '../../utils/RemoveAvatarFile';
+import { AppError } from '@infra/http/errors/AppError';
+import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
+import { removeAvatarFile } from '@modules/accounts/utils/RemoveAvatarFile';
 
 type UpdateUserAvatarRequest = {
   user_id: string;

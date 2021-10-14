@@ -2,12 +2,12 @@ import 'express-async-errors';
 import express, { NextFunction, Response, Request } from 'express';
 import swaggerUI from 'swagger-ui-express';
 
-import './database';
-import './infra/container';
+import '@infra/typeorm';
+import '@infra/container';
 
-import { configSwagger } from './config/swagger';
-import { AppError } from './infra/errors/AppError';
-import { router } from './routes';
+import { configSwagger } from '@config/swagger';
+import { AppError } from '@infra/http/errors/AppError';
+import { router } from '@infra/http/routes';
 
 const app: express.Application = express();
 
