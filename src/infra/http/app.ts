@@ -1,13 +1,16 @@
+import 'reflect-metadata';
 import 'express-async-errors';
 import express, { NextFunction, Response, Request } from 'express';
 import swaggerUI from 'swagger-ui-express';
 
-import '@infra/typeorm';
 import '@infra/container';
 
 import { configSwagger } from '@config/swagger';
 import { AppError } from '@infra/http/errors/AppError';
 import { router } from '@infra/http/routes';
+import createConnectionTypeORM from '@infra/typeorm';
+
+createConnectionTypeORM();
 
 const app: express.Application = express();
 

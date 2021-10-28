@@ -8,6 +8,7 @@ import { GetCategoryController } from '@modules/cars/useCases/GetCategory/GetCat
 import { ImportCategoryController } from '@modules/cars/useCases/ImportCategory/ImportCategoryController';
 import { UpdateCategoryController } from '@modules/cars/useCases/UpdateCategory/UpdateCategoryController';
 
+import { ensureAdmin } from '../middlewares/EnsureAdmin';
 import { ensureAuthenticated } from '../middlewares/EnsureAuthenticated';
 
 const categoriesRouter = Router();
@@ -27,10 +28,11 @@ categoriesRouter.use(ensureAuthenticated);
 categoriesRouter.post(
   '/import',
   upload.single('file'),
+  ensureAdmin,
   importCategoryController.handle
 );
 
-categoriesRouter.post('/', createCategoryController.handle);
+categoriesRouter.post('/', ensureAdmin, createCategoryController.handle);
 
 categoriesRouter.get('/', getAllCategoryController.handle);
 

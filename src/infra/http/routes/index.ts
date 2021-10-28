@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import { accountsRouter } from './accounts.routes';
 import { authenticateRouter } from './authenticate.routes';
+import { carsRouter } from './cars.routes';
 import { categoriesRouter } from './categories.routes';
 import { specificationsRouter } from './specifications.routes';
 
@@ -13,5 +14,6 @@ router.use(authenticateRouter);
 router.use('/accounts', accountsRouter);
 router.use('/categories', categoriesRouter);
 router.use('/specifications', specificationsRouter);
+router.use('/cars', carsRouter);
 
 export { router };

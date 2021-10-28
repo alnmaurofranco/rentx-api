@@ -8,7 +8,8 @@
     "typeorm": "tsnd ./node_modules/typeorm/cli",
     "db:migrations": "yarn typeorm migration:create -n",
     "db:migrate": "yarn typeorm migration:run",
-    "test": "jest"
+    "test": "jest",
+    "seed:admin": "tsnd -r tsconfig-paths/register src/infra/typeorm/seeds/admin.ts"
   },
   "license": "MIT",
   "dependencies": {
