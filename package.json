@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsnd -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --clear src/infra/http/server.ts",
     "dev:debug": "tsnd -r tsconfig-paths/register --inspect --respawn --transpile-only --ignore-watch node_modules --clear src/infra/http/server.ts",
-    "typeorm": "tsnd ./node_modules/typeorm/cli",
+    "typeorm": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "db:migrations": "yarn typeorm migration:create -n",
     "db:migrate": "yarn typeorm migration:run",
     "test": "jest",

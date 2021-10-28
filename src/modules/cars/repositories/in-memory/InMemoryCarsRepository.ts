@@ -5,6 +5,26 @@ import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 class InMemoryCarsRepository implements ICarsRepository {
   constructor(public cars: Car[] = []) {}
 
+  async findAvailable(
+    brand?: string,
+    category_id?: string,
+    name?: string
+  ): Promise<Car[]> {
+    const carsAvailable = this.cars.filter((findCar) => {
+      if (
+        findCar.available === true ||
+        (brand && findCar.brand === brand) ||
+        (category_id && findCar.category_id === category_id) ||
+        (name && findCar.name === name)
+      ) {
+        return findCar;
+      }
+      return null;
+    });
+
+    return carsAvailable;
+  }
+
   async findByLicensePlate(license_plate: string): Promise<Car> {
     return this.cars.find((findCar) => findCar.license_plate === license_plate);
   }

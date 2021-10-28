@@ -61,6 +61,6 @@ describe('Create Car', () => {
       category_id: 'automatico',
     });
 
-    expect(car.avaliable).toBe(true);
+    expect(car.available).toBe(true);
   });
 });

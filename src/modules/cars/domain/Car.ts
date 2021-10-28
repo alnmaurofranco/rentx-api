@@ -25,7 +25,7 @@ class Car {
   daily_rate: number;
 
   @Column('boolean')
-  avaliable: boolean; // true
+  available: boolean; // true
 
   @Column('varchar')
   license_plate: string;
@@ -49,7 +49,7 @@ class Car {
   constructor() {
     if (!this.id) {
       this.id = uuid();
-      this.avaliable = true;
+      this.available = true;
     }
   }
 }
