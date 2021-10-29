@@ -1,14 +1,15 @@
-import { InMemoryCategoriesRepository } from '../../repositories/in-memory/InMemoryCategoriesRepository';
+import { InMemorySpecificationsRepository } from '@modules/cars/repositories/in-memory/InMemorySpecificationsRepository';
+
 import { ICreateSpecificationDTO } from '../../repositories/ISpecificationsRepository';
 import { CreateSpecification } from './CreateSpecification';
 
-let categoriesRepository: InMemoryCategoriesRepository;
+let specificationsRepository: InMemorySpecificationsRepository;
 let createSpecification: CreateSpecification;
 
 describe('Create Specification', () => {
   beforeEach(() => {
-    categoriesRepository = new InMemoryCategoriesRepository();
-    createSpecification = new CreateSpecification(categoriesRepository);
+    specificationsRepository = new InMemorySpecificationsRepository();
+    createSpecification = new CreateSpecification(specificationsRepository);
   });
 
   it('Should be able to create a specification', async () => {
@@ -19,7 +20,7 @@ describe('Create Specification', () => {
 
     await createSpecification.execute(specification);
 
-    const specificationExists = await categoriesRepository.findByName(
+    const specificationExists = await specificationsRepository.findByName(
       specification.name
     );
 

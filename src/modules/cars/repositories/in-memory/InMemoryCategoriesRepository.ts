@@ -6,18 +6,18 @@ import {
 } from '../ICategoriesRepository';
 
 class InMemoryCategoriesRepository implements ICategoriesRepository {
-  private static INSTANCE: InMemoryCategoriesRepository;
+  // private static INSTANCE: InMemoryCategoriesRepository;
 
   constructor(public categories: Category[] = []) {}
 
-  public static getInstance(): InMemoryCategoriesRepository {
-    if (!InMemoryCategoriesRepository.INSTANCE) {
-      InMemoryCategoriesRepository.INSTANCE =
-        new InMemoryCategoriesRepository();
-    }
+  // public static getInstance(): InMemoryCategoriesRepository {
+  //   if (!InMemoryCategoriesRepository.INSTANCE) {
+  //     InMemoryCategoriesRepository.INSTANCE =
+  //       new InMemoryCategoriesRepository();
+  //   }
 
-    return InMemoryCategoriesRepository.INSTANCE;
-  }
+  //   return InMemoryCategoriesRepository.INSTANCE;
+  // }
 
   async findAll(): Promise<Category[]> {
     return this.categories;

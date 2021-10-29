@@ -6,18 +6,42 @@ import {
 } from '../ISpecificationsRepository';
 
 class InMemorySpecificationsRepository implements ISpecificationsRepository {
-  private static INSTANCE: InMemorySpecificationsRepository;
+  // private static INSTANCE: InMemorySpecificationsRepository;
 
-  private constructor(public specifications: Specification[] = []) {}
+  constructor(public specifications: Specification[] = []) {}
 
-  public static getInstance(): InMemorySpecificationsRepository {
-    if (!InMemorySpecificationsRepository.INSTANCE) {
-      InMemorySpecificationsRepository.INSTANCE =
-        new InMemorySpecificationsRepository();
-    }
-
-    return InMemorySpecificationsRepository.INSTANCE;
+  async findAll(): Promise<Specification[]> {
+    return this.specifications;
   }
+
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    // const specifications = await this.specifications.filter((findSpec) => {
+    //   ids.map((findId) => {
+    //     if (findSpec.id === findId) {
+    //       return findSpec;
+    //     }
+    //     return null;
+    //   });
+    //   return null;
+    // });
+
+    // return specifications;
+
+    const allSpecifications = this.specifications.filter((findSpecification) =>
+      ids.includes(findSpecification.id)
+    );
+
+    return allSpecifications;
+  }
+
+  // public static getInstance(): InMemorySpecificationsRepository {
+  //   if (!InMemorySpecificationsRepository.INSTANCE) {
+  //     InMemorySpecificationsRepository.INSTANCE =
+  //       new InMemorySpecificationsRepository();
+  //   }
+
+  //   return InMemorySpecificationsRepository.INSTANCE;
+  // }
 
   async findByName(name: string): Promise<Specification> {
     return this.specifications.find(
@@ -31,7 +55,10 @@ class InMemorySpecificationsRepository implements ISpecificationsRepository {
     );
   }
 
-  async create({ name, description }: ICreateSpecificationDTO): Promise<void> {
+  async create({
+    name,
+    description,
+  }: ICreateSpecificationDTO): Promise<Specification> {
     const specification = new Specification();
 
     Object.assign(specification, {
@@ -41,6 +68,8 @@ class InMemorySpecificationsRepository implements ISpecificationsRepository {
     });
 
     this.specifications.push(specification);
+
+    return specification;
   }
 }
 
