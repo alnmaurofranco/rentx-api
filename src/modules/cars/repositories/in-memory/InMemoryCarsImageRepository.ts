@@ -17,6 +17,8 @@ class InMemoryCarsImageRepository implements ICarsImageRepository {
       image_name,
     });
 
+    this.carImage.push(carImage);
+
     return carImage;
   }
 }
