@@ -23,6 +23,8 @@ const getCategoryController = new GetCategoryController();
 const updateCategoryController = new UpdateCategoryController();
 const deleteCategoryController = new DeleteCategoryController();
 
+categoriesRouter.get('/', getAllCategoryController.handle);
+
 categoriesRouter.use(ensureAuthenticated);
 
 categoriesRouter.post(
@@ -33,8 +35,6 @@ categoriesRouter.post(
 );
 
 categoriesRouter.post('/', ensureAdmin, createCategoryController.handle);
-
-categoriesRouter.get('/', getAllCategoryController.handle);
 
 categoriesRouter.get('/:id', getCategoryController.handle);
 

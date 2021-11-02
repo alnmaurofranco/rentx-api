@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 
 import { DayJSDateProvider } from '@infra/providers/DateProvider/implementations/DayJSDateProvider';
+import { InMemoryCarsRepository } from '@modules/cars/repositories/in-memory/InMemoryCarsRepository';
 import { InMemoryRentalsRepository } from '@modules/rentals/repositories/in-memory/InMemoryRentalsRepository';
 
 import { CreateRental } from './CreateRental';
@@ -8,13 +9,19 @@ import { CreateRental } from './CreateRental';
 let rentalsRepository: InMemoryRentalsRepository;
 let createRental: CreateRental;
 let dayJSDateProvider: DayJSDateProvider;
+let carsRepository: InMemoryCarsRepository;
 
 describe('Create Rental', () => {
   const dayAdd24Hours = dayjs().add(1, 'day').toDate();
   beforeEach(() => {
     rentalsRepository = new InMemoryRentalsRepository();
     dayJSDateProvider = new DayJSDateProvider();
-    createRental = new CreateRental(rentalsRepository, dayJSDateProvider);
+    carsRepository = new InMemoryCarsRepository();
+    createRental = new CreateRental(
+      rentalsRepository,
+      dayJSDateProvider,
+      carsRepository
+    );
   });
 
   it('Should be able to create a new rental', async () => {

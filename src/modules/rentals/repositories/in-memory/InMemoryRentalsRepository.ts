@@ -5,6 +5,18 @@ import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsReposi
 class InMemoryRentalsRepository implements IRentalsRepository {
   constructor(public rentals: Rental[] = []) {}
 
+  async findById(id: string): Promise<Rental> {
+    return this.rentals.find((findRental) => findRental.id === id);
+  }
+
+  async findByUser(user_id: string): Promise<Rental[]> {
+    const rental = this.rentals.filter(
+      (findRental) => findRental.user_id === user_id
+    );
+
+    return rental;
+  }
+
   async findOpenRentalByCar(car_id: string): Promise<Rental> {
     return this.rentals.find(
       (findRental) => findRental.car_id === car_id && !findRental.end_date

@@ -21,7 +21,11 @@ export default async (host = '172.19.0.2'): Promise<Connection> => {
 
   const connection = createConnection(
     Object.assign(defaultOptions, {
-      host,
+      host: process.env.NODE_ENV === 'test' ? 'localhost' : host,
+      database:
+        process.env.NODE_ENV === 'test'
+          ? 'rentxdb_test'
+          : defaultOptions.database,
     })
   );
 

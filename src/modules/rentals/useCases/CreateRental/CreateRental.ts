@@ -2,6 +2,7 @@ import { inject, injectable } from 'tsyringe';
 
 import { AppError } from '@infra/http/errors/AppError';
 import { IDateProvider } from '@infra/providers/DateProvider/IDateProvider';
+import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { Rental } from '@modules/rentals/domain/Rental';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
 
@@ -19,7 +20,9 @@ class CreateRental {
     @inject('RentalsRepository')
     private rentalsRepository: IRentalsRepository,
     @inject('DayJSDateProvider')
-    private dateProvider: IDateProvider
+    private dateProvider: IDateProvider,
+    @inject('CarsRepository')
+    private carsRepository: ICarsRepository
   ) {}
 
   async execute({
@@ -53,8 +56,6 @@ class CreateRental {
       expected_return_date
     );
 
-    console.log(compare);
-
     if (compare < minimumHour) {
       throw new AppError('Invalid return time.');
     }
@@ -64,6 +65,8 @@ class CreateRental {
       car_id,
       expected_return_date,
     });
+
+    await this.carsRepository.updateAvailable(car_id, false);
 
     return rental;
   }
