@@ -29,13 +29,18 @@ class DevolutionRental {
     user_id,
   }: DevolutionRentalRequest): Promise<DevolutionRentalResponse> {
     const rental = await this.rentalsRepository.findById(id);
-    const car = await this.carsRepository.findById(rental.car_id);
-
-    const minimum_daily = 1;
 
     if (!rental) {
       throw new AppError('Rental does not exists.');
     }
+
+    const car = await this.carsRepository.findById(rental.car_id);
+
+    if (!car) {
+      throw new AppError('Car does not exists.');
+    }
+
+    const minimum_daily = 1;
 
     // Verificar o tempo de aluguel
     const dateNow = this.dateProvider.dateNow();
