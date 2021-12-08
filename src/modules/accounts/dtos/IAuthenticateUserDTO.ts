@@ -7,6 +7,7 @@ interface IAuthenticateUserDTO {
     isAdmin: boolean;
   };
   token: string;
+  refresh_token: string;
 }
 
 export { IAuthenticateUserDTO };

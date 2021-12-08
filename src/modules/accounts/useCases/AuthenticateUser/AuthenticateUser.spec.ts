@@ -1,16 +1,27 @@
+import { DayJSDateProvider } from '@infra/providers/DateProvider/implementations/DayJSDateProvider';
+import { InMemoryUsersTokensRepository } from '@modules/accounts/repositories/in-memory/InMemoryUsersTokensRepository';
+
 import { InMemoryUsersRepository } from '../../repositories/in-memory/InMemoryUsersRepository';
 import { CreateUser } from '../CreateUser/CreateUser';
 import { AuthenticateUser } from './AuthenticateUser';
 
 let usersRepository: InMemoryUsersRepository;
+let usersTokensRepository: InMemoryUsersTokensRepository;
+let dayJSDateProvider: DayJSDateProvider;
 let authenticateUser: AuthenticateUser;
 let createUser: CreateUser;
 
 describe('Authenticate User', () => {
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository();
+    usersTokensRepository = new InMemoryUsersTokensRepository();
+    dayJSDateProvider = new DayJSDateProvider();
     createUser = new CreateUser(usersRepository);
-    authenticateUser = new AuthenticateUser(usersRepository);
+    authenticateUser = new AuthenticateUser(
+      usersRepository,
+      usersTokensRepository,
+      dayJSDateProvider
+    );
   });
 
   it('Should be able to authenticate user with email and password', async () => {

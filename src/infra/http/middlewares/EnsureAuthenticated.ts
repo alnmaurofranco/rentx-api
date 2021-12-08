@@ -3,7 +3,6 @@ import { verify } from 'jsonwebtoken';
 
 import { configAuth } from '@config/auth';
 import { AppError } from '@infra/http/errors/AppError';
-import { UsersRepository } from '@modules/accounts/repositories/implementations/UsersRepository';
 
 interface IPayload {
   sub: string;
@@ -15,6 +14,7 @@ const ensureAuthenticated = async (
   next: NextFunction
   // eslint-disable-next-line consistent-return
 ): Promise<void> => {
+  const { secret_token } = configAuth;
   const tokenHeader = request.headers.authorization;
 
   if (!tokenHeader) {
@@ -24,14 +24,7 @@ const ensureAuthenticated = async (
   const [, token] = tokenHeader.split(' ');
 
   try {
-    const { sub: user_id } = verify(token, configAuth.secret) as IPayload;
-
-    const usersRepository = new UsersRepository();
-    const user = await usersRepository.findById(user_id);
-
-    if (!user) {
-      throw new AppError('User does not exists.', 401);
-    }
+    const { sub: user_id } = verify(token, secret_token) as IPayload;
 
     request.user = {
       id: user_id,

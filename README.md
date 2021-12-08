@@ -1,24 +1,25 @@
-<h1>
-RentalxAPI
+<h1 align="center">
+⚡ RentalAPI - Alugel de Carros 🚗
 </h1>
 
-*
-*
 
 ## 🚀 Tecnologias
-
 <p>
-<img src="https://cdn.svgporn.com/logos/typescript-icon.svg" alt="typescript" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/angular-icon.svg" alt="angular" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/material-ui.svg" alt="materialdesign" width="30" height="30" style="margin-left: 5px;"/>
 <img src="https://cdn.svgporn.com/logos/nodejs-icon.svg" alt="nodejs" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/javascript.svg" alt="javascript" width="30" height="30" style="margin-left: 5px;"/>
 <img src="https://cdn.svgporn.com/logos/express.svg" alt="express" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/nodemon.svg" alt="nodemon" width="30" height="30" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/typescript-icon.svg" alt="typescript" width="30" height="30" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/postgresql.svg" alt="postgresql" width="30" height="30" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/eslint.svg" alt="eslint" width="30" height="30" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/prettier.svg" alt="prettier" width="30" height="30" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/jest.svg" alt="jest" width="30" height="30" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/docker-icon.svg" alt="docker" width="30" height="30" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/yarn.svg" alt="yarn" width="30" height="30" style="margin-left: 5px;"/>
 </p>
 
 ## ✅ Demostração
 <img src=".github/github@screen.png" alt="demostração" />
+
+## 👷‍♂️ Engenharia de Software
 
 ## Manter carros
 
@@ -88,3 +89,16 @@ Deve ser possivel realizar/cadastrar um alugel de um carro.
 O alugel deve ter uma duração minima de 24 horas.
 Não deve ser possivel cadastrar um novo alugel caso já exista um aberto para o mesmo usuário
 Não deve ser possivel cadastrar um novo alugel caso já exista um aberto para o mesmo carro
+
+## Recuperar Senha
+
+**Requisito Funcional**
+Deve ser possivel o usuário recuperar a senha informando o e-mail.
+O usuário deve receber um e-mail com o passo a passo para a recuperação da senha.
+O usuário deve conseguir inserir uma nova senha.
+
+**Requisito Não-Funcional**
+
+**Regra de Negócio**
+O usuário precisa informar uma nova senha
+O link enviado para a recuperação deve expirar em 3 horas

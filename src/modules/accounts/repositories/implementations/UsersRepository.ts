@@ -45,11 +45,17 @@ class UsersRepository implements IUsersRepository {
   }
 
   async save(user: User): Promise<void> {
-    const userFinded = await this.repository.findOne({
-      where: { id: user.id },
-    });
+    // const userFinded = await this.repository.findOne({
+    //   where: {
+    //     id: user.id,
+    //   },
+    // });
 
-    await this.repository.update(userFinded, user);
+    // await this.repository.update(user, userFinded);
+    // eslint-disable-next-line no-param-reassign
+    user.updated_at = new Date();
+
+    await this.repository.save(user);
   }
 }
 

@@ -2,7 +2,11 @@ import { User } from '../domain/User';
 import { IAuthenticateUserDTO } from '../dtos';
 
 class AccountsMapper {
-  static toDto(userPersistence: User, token: string): IAuthenticateUserDTO {
+  static toDto(
+    userPersistence: User,
+    token: string,
+    refresh_token: string
+  ): IAuthenticateUserDTO {
     return {
       user: {
         id: userPersistence.id,
@@ -12,6 +16,7 @@ class AccountsMapper {
         isAdmin: userPersistence.isAdmin,
       },
       token,
+      refresh_token,
     };
   }
 }
