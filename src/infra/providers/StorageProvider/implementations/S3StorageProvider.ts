@@ -1,6 +1,6 @@
 import { S3 } from 'aws-sdk';
 import fs from 'fs';
-import { getType } from 'mime';
+import mime from 'mime';
 import { resolve } from 'path';
 
 import upload from '@config/upload';
@@ -21,15 +21,15 @@ export class S3StorageProvider implements IStorageProvider {
 
     const fileContent = await fs.promises.readFile(originalName);
 
-    const ContentType = getType(originalName);
+    const ContentType = mime.getType(originalName);
 
     await this.client
       .putObject({
         Bucket: `${process.env.AWS_BUCKET}/${folder}`,
         Key: file,
-        ACL: 'public-read',
         Body: fileContent,
         ContentType,
+        ACL: 'public-read',
       })
       .promise();
 
