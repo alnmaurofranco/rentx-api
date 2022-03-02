@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
 
-import { configUpload } from '@config/upload';
+import configUpload from '@config/upload';
 import { CreateUserController } from '@modules/accounts/useCases/CreateUser/CreateUserController';
 import { UpdateUserAvatarController } from '@modules/accounts/useCases/UpdateUserAvatar/UpdateUserAvatarController';
 
@@ -12,7 +12,7 @@ const updateUserAvatarController = new UpdateUserAvatarController();
 
 const accountsRouter = Router();
 
-const upload = multer(configUpload.upload('./tmp/avatar'));
+const upload = multer(configUpload);
 
 accountsRouter.post('/', createUserController.handle);
 
