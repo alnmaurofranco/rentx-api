@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import { AppError } from '@infra/http/errors/AppError';
+import { IStorageProvider } from '@infra/providers/StorageProvider/IStorageProvider';
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
 import { removeAvatarFile } from '@modules/accounts/utils/RemoveAvatarFile';
 
@@ -15,7 +16,9 @@ type UpdateUserAvatarResponse = void;
 class UpdateUserAvatar {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider
   ) {}
 
   async execute({
@@ -29,8 +32,10 @@ class UpdateUserAvatar {
     }
 
     if (user.avatar) {
-      await removeAvatarFile(`./tmp/avatar/${user.avatar}`);
+      await this.storageProvider.delete(user.avatar, 'avatar');
     }
+
+    await this.storageProvider.save(avatar_file, 'avatar');
 
     user.avatar = avatar_file;
 
