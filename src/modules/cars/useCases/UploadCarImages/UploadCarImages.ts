@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
+import { IStorageProvider } from '@infra/providers/StorageProvider/IStorageProvider';
 import { ICarsImageRepository } from '@modules/cars/repositories/ICarsImageRepository';
 
 type UploadCarImagesRequest = {
@@ -13,7 +14,9 @@ type UploadCarImagesResponse = void;
 class UploadCarImages {
   constructor(
     @inject('CarsImageRepository')
-    private carsImageRepository: ICarsImageRepository
+    private carsImageRepository: ICarsImageRepository,
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider
   ) {}
 
   async execute({
@@ -22,6 +25,7 @@ class UploadCarImages {
   }: UploadCarImagesRequest): Promise<UploadCarImagesResponse> {
     images_name.map(async (image) => {
       await this.carsImageRepository.create(car_id, image);
+      await this.storageProvider.save(image, 'cars');
     });
   }
 }
