@@ -1,3 +1,4 @@
+import { Expose } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -35,6 +36,18 @@ class User {
 
   @UpdateDateColumn({ type: 'time with time zone' })
   updated_at: Date;
+
+  @Expose({ name: 'avatar_url' })
+  avatar_url(): string {
+    switch (process.env.DISK) {
+      case 's3':
+        return `${process.env.AWS_BUCKET_URL}/avatar/${this.avatar}`;
+      case 'local':
+        return `${process.env.APP_API_URL}/avatar/${this.avatar}`;
+      default:
+        return null;
+    }
+  }
 
   constructor() {
     if (!this.id) {
