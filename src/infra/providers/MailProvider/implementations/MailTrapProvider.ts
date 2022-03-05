@@ -1,31 +1,23 @@
 import fs from 'fs';
 import handlebars from 'handlebars';
 import nodemailer, { Transporter } from 'nodemailer';
-import { injectable } from 'tsyringe';
 
 import { IMailProvider } from '../IMailProvider';
 
-@injectable()
 class MailTrapProvider implements IMailProvider {
   private client: Transporter;
 
   constructor() {
-    nodemailer
-      .createTestAccount()
-      .then((account) => {
-        const transporter = nodemailer.createTransport({
-          host: account.smtp.host,
-          port: account.smtp.port,
-          secure: account.smtp.secure,
-          auth: {
-            user: account.user,
-            pass: account.pass,
-          },
-        });
+    const transporter = nodemailer.createTransport({
+      host: process.env.MAILTRAP_HOST,
+      port: Number(process.env.MAILTRAP_PORT),
+      auth: {
+        user: process.env.MAILTRAP_USER,
+        pass: process.env.MAILTRAP_PASS,
+      },
+    });
 
-        this.client = transporter;
-      })
-      .catch((error) => console.log(error));
+    this.client = transporter;
   }
 
   async sendMail(
@@ -40,16 +32,11 @@ class MailTrapProvider implements IMailProvider {
 
     const templateHTML = templateParse(variables);
 
-    const message = await this.client.sendMail({
+    await this.client.sendMail({
       to,
-      from: 'Rentx: <noreplay@rentx.com.br',
+      from: 'Rentx: <noreplay@rentx.com.br>',
       subject,
       html: templateHTML,
-    });
-
-    console.log({
-      message,
-      link: nodemailer.getTestMessageUrl(message),
     });
   }
 }
