@@ -19,7 +19,7 @@ class SendForgotPasswordMail {
     private usersTokensRepository: IUsersTokensRepository,
     @inject('DayJSDateProvider')
     private dateProvider: IDateProvider,
-    @inject('MailTrapProvider')
+    @inject('MailProvider')
     private mailProvider: IMailProvider
   ) {}
 
@@ -53,6 +53,7 @@ class SendForgotPasswordMail {
       link: `${process.env.FORGOT_MAIL_URL}${token}`,
     };
 
+    // TODO: Verify if the mail provider is working
     await this.mailProvider.sendMail(
       email,
       'Recuperação de senha',
