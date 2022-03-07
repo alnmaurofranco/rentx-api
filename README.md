@@ -2,22 +2,25 @@
 ⚡ RentalAPI - Alugel de Carros 🚗
 </h1>
 
+## ✅ Demostração
+<img src=".github/github@screen.png" alt="demostração" />
 
 ## 🚀 Tecnologias
 <p>
-<img src="https://cdn.svgporn.com/logos/nodejs-icon.svg" alt="nodejs" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/express.svg" alt="express" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/typescript-icon.svg" alt="typescript" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/postgresql.svg" alt="postgresql" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/eslint.svg" alt="eslint" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/prettier.svg" alt="prettier" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/jest.svg" alt="jest" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/docker-icon.svg" alt="docker" width="30" height="30" style="margin-left: 5px;"/>
-<img src="https://cdn.svgporn.com/logos/yarn.svg" alt="yarn" width="30" height="30" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/nodejs-icon.svg" alt="nodejs" width="45" height="45" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/typescript-icon.svg" alt="typescript" width="45" height="45" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/express.svg" alt="express" width="45" height="45" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/postgresql.svg" alt="postgresql" width="45" height="45" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/eslint.svg" alt="eslint" width="45" height="45" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/prettier.svg" alt="prettier" width="45" height="45" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/jest.svg" alt="jest" width="45" height="45" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/docker-icon.svg" alt="docker" width="45" height="45" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/aws-s3.svg" alt="s3" width="45" height="45" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/aws-ses.svg" alt="ses" width="45" height="45" style="margin-left: 5px;"/>
+<img src="https://cdn.svgporn.com/logos/yarn.svg" alt="yarn" width="45" height="45" style="margin-left: 5px;"/>
 </p>
 
-## ✅ Demostração
-<img src=".github/github@screen.png" alt="demostração" />
+## 🎉 Funcionalidades
 
 ## 👷‍♂️ Engenharia de Software
 
