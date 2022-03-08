@@ -1,10 +1,12 @@
 import { ICreateUserDTO } from '@modules/accounts/dtos';
 import { InMemoryUsersRepository } from '@modules/accounts/repositories/in-memory/InMemoryUsersRepository';
 
+import { LocalStorageProvider } from '../../../../infra/providers/StorageProvider/implementations/LocalStorageProvider';
 import { CreateUser } from '../CreateUser/CreateUser';
 import { UpdateUserAvatar } from './UpdateUserAvatar';
 
 let usersRepository: InMemoryUsersRepository;
+let localStorageProvider: LocalStorageProvider;
 let createUser: CreateUser;
 let updateUserAvatar: UpdateUserAvatar;
 let user: ICreateUserDTO;
@@ -12,8 +14,12 @@ let user: ICreateUserDTO;
 describe('Update User Avatar', () => {
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository();
+    localStorageProvider = new LocalStorageProvider();
     createUser = new CreateUser(usersRepository);
-    updateUserAvatar = new UpdateUserAvatar(usersRepository);
+    updateUserAvatar = new UpdateUserAvatar(
+      usersRepository,
+      localStorageProvider
+    );
 
     user = {
       name: 'John Doe',
