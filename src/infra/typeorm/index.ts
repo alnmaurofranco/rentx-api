@@ -16,7 +16,7 @@ import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 //   .then(() => console.log(`🔥 Database up`))
 //   .catch((err) => console.log(`❌ Database ${err}`));
 
-export default async (host = '172.19.0.2'): Promise<Connection> => {
+export default async (host = '172.29.0.1'): Promise<Connection> => {
   const defaultOptions = await getConnectionOptions();
 
   const connection = createConnection(
