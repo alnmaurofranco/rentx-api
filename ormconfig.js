@@ -1,12 +1,24 @@
+require('dotenv/config');
+
+const {
+  DB_HOST,
+  DB_PORT,
+  DB_USERNAME,
+  DB_PASSWORD,
+  DB_NAME,
+  TYPEORM_ENTITIES,
+  TYPEORM_MIGRATION,
+} = process.env;
+
 module.exports = {
   type: 'postgres',
-  //url: 'postgresql://docker:docker@172.19.0.2:5432/rentxdb',
-  port: 5432,
-  username: 'docker',
-  password: 'docker',
-  database: 'rentxdb',
-  entities: ['src/modules/**/**/domain/*.ts'],
-  migrations: ['src/infra/typeorm/migrations/**/*.ts'],
+  host: DB_HOST,
+  port: DB_PORT,
+  username: DB_USERNAME,
+  password: DB_PASSWORD,
+  database: DB_NAME,
+  entities: [TYPEORM_ENTITIES],
+  migrations: [TYPEORM_MIGRATION],
   cli: {
     migrationsDir: 'src/infra/typeorm/migrations',
   },
