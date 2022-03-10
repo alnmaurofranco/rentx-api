@@ -12,7 +12,9 @@
     "db:migrations": "yarn typeorm migration:create -n",
     "db:migrate": "yarn typeorm migration:run",
     "test": "NODE_ENV=test jest --runInBand --detectOpenHandles",
-    "seed:admin": "tsnd -r tsconfig-paths/register src/infra/typeorm/seeds/admin.ts"
+    "seed:admin": "tsnd -r tsconfig-paths/register src/infra/typeorm/seeds/admin.ts",
+    "create:pm2:app": "NODE_ENV=production pm2 start dist/infra/http/server.js --name rentx-api",
+    "stop:app": "pm2 stop rentx-api"
   },
   "license": "MIT",
   "dependencies": {
