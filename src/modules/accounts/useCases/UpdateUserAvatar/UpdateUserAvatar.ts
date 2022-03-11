@@ -1,9 +1,7 @@
-import { inject, injectable } from 'tsyringe';
-
 import { AppError } from '@infra/http/errors/AppError';
 import { IStorageProvider } from '@infra/providers/StorageProvider/IStorageProvider';
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
-import { removeAvatarFile } from '@modules/accounts/utils/RemoveAvatarFile';
+import { inject, injectable } from 'tsyringe';
 
 type UpdateUserAvatarRequest = {
   user_id: string;

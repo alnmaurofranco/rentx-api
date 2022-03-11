@@ -1,7 +1,6 @@
+import { LocalStorageProvider } from '@infra/providers/StorageProvider/implementations/LocalStorageProvider';
 import { ICreateUserDTO } from '@modules/accounts/dtos';
 import { InMemoryUsersRepository } from '@modules/accounts/repositories/in-memory/InMemoryUsersRepository';
-
-import { LocalStorageProvider } from '../../../../infra/providers/StorageProvider/implementations/LocalStorageProvider';
 import { CreateUser } from '../CreateUser/CreateUser';
 import { UpdateUserAvatar } from './UpdateUserAvatar';
 
@@ -34,10 +33,12 @@ describe('Update User Avatar', () => {
 
     const { id: user_id } = await usersRepository.findByEmail(user.email);
 
-    await updateUserAvatar.execute({
+    const result = await updateUserAvatar.execute({
       user_id,
-      avatar_file: '123',
+      avatar_file: 'avatar.jpg',
     });
+
+    console.log('result', result);
 
     expect(0).toBe(0);
   });
