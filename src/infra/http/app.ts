@@ -1,23 +1,23 @@
-import 'reflect-metadata';
 import 'express-async-errors';
+import 'reflect-metadata';
 import '@config/env';
-import express, { NextFunction, Response, Request } from 'express';
-import swaggerUI from 'swagger-ui-express';
-
-import '@infra/container';
-
 import { configSwagger } from '@config/swagger';
 import configUpload from '@config/upload';
+import '@infra/container';
 import { AppError } from '@infra/http/errors/AppError';
 import { router } from '@infra/http/routes';
 import createConnectionTypeORM from '@infra/typeorm';
+
+import cors from 'cors';
+import express, { NextFunction, Request, Response } from 'express';
+import swaggerUI from 'swagger-ui-express';
 
 createConnectionTypeORM();
 
 const app: express.Application = express();
 
 app.use(express.json());
-
+app.use(cors());
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(configSwagger));
 
 app.use('/avatar', express.static(`${configUpload.tmpFolder}/avatar`));
