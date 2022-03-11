@@ -1,9 +1,7 @@
-import { sign } from 'jsonwebtoken';
-
 import { configAuth } from '@config/auth';
 import { DayJSDateProvider } from '@infra/providers/DateProvider/implementations/DayJSDateProvider';
 import { InMemoryUsersTokensRepository } from '@modules/accounts/repositories/in-memory/InMemoryUsersTokensRepository';
-
+import { sign } from 'jsonwebtoken';
 import { RefreshToken } from './RefreshToken';
 
 let usersTokensRepository: InMemoryUsersTokensRepository;
@@ -26,6 +24,8 @@ describe('Refresh Token', () => {
   });
 
   it('Should not be able to create a new refresh token with token does not formatted', async () => {
-    await expect(refreshToken.execute('invalid-token')).toBeTruthy();
+    expect(async () => {
+      await refreshToken.execute('invalid-token');
+    }).toBeTruthy();
   });
 });
