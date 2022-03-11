@@ -15,7 +15,7 @@
 </p>
 
 ## 👀 Documentação
-RENTX API conta também com a documentação que está disponível para ser consultada em <a href="http://localhost:3333/api-docs" target="_blank">http://localhost:3333/api-docs</a>
+A nossa documentação está disponível para ser consultada em <a href="http://localhost:3333/api-docs" target="_blank">http://localhost:3333/api-docs</a>
 
 
 ## 🚀 Tecnologias
@@ -67,6 +67,62 @@ As funcionalidades desta API são
 * Cadastrar um alugel ✅
 * Devolver um carro alugado ✅
 * Listar alugeis do usuário ✅
+
+## 💻 Como executar
+Para rodar este projeto é necessário ter [Node.js](https://nodejs.org/) instalado em sua maquina. Caso não tenha ainda basta acessar o site do [Node.js](https://nodejs.org/) e instalar para continuar.
+
+- Clone este repositório com comando
+```bash
+git clone https://github.com/alnmaurofranco/rentx-api
+```
+- Acesse a pasta do projeto
+```bash
+cd rentx-api
+```
+### **🔥 Sem Docker**
+- Instale as dependências do projeto com (yarn ou npm) nesse exemplo estou usando **yarn**
+```bash
+yarn install
+```
+- Após a instalação das dependencias você deve renomear os arquivos `.env.example` para `.env` e `.env.production.example` para `.env.production` que se encontram na raiz do projeto.
+- Caso você ainda não tenha criado a base de dados, basta executar esse comando no seu SGDB:
+````sql
+CREATE DATABASE rentxdb;
+````
+- Dentro do `.env` agora você coloca as informações do seu banco de dados.
+```bash
+DB_USERNAME="user" # nome de usuário do banco de dados
+DB_PASSWORD="password" # senha de usuário do banco de dados
+DB_NAME="rentxdb" # mantenha esse nome caso tenha executado o primeiro comando, caso contrario altere pelo nome escolhido.
+```
+- Para produção você vai precisar alterar o arquivo `.env.production` e colocar suas informações, e após você deve executar o comando
+```bash
+yarn start:prod
+```
+
+- Iniciar a API:
+```bash
+yarn start:dev
+```
+
+**Pronto agora API estára rodando e pode ser acessado em [`http://localhost:3333/api`](http://localhost:3333/api)**
+
+### **🐳 Com Docker**
+- Copie as informações abaixo para o arquivo de `.env`.
+```bash
+DB_USERNAME="docker"
+DB_PASSWORD="docker"
+DB_NAME="rentxdb"
+```
+- Agora vamos subir o container do projeto utilizando o comando abaixo:
+```bash
+docker-compose up -d
+```
+- Após subir o container você pode observar os logs da aplicação:
+```bash
+docker logs api-rentx -f
+```
+**Pronto agora API estára rodando com Docker e já pode ser acessado em [`http://localhost:3333/api`](http://localhost:3333/api)**
 
 ## 🤔 Como contribuir
 A contribuição para projetos open-sources são sempre bem-vindas e claro o aprendizado é o retorno da contribuição.
