@@ -4,14 +4,16 @@ import '@config/env';
 import { configSwagger } from '@config/swagger';
 import configUpload from '@config/upload';
 import '@infra/container';
-import { AppError } from '@infra/http/errors/AppError';
 import { router } from '@infra/http/routes';
 import createConnectionTypeORM from '@infra/typeorm';
+import * as Sentry from '@sentry/node';
+import * as Tracing from '@sentry/tracing';
 
 import cors from 'cors';
-import express, { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import swaggerUI from 'swagger-ui-express';
 
+import EnsureError from './middlewares/EnsureError';
 import RateLimiter from './middlewares/RateLimiter';
 
 createConnectionTypeORM();
@@ -19,6 +21,18 @@ createConnectionTypeORM();
 const app: express.Application = express();
 
 app.use(RateLimiter);
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  integrations: [
+    new Sentry.Integrations.Http({ tracing: true }),
+    new Tracing.Integrations.Express({ app }),
+  ],
+  tracesSampleRate: 1.0,
+});
+
+app.use(Sentry.Handlers.requestHandler());
+app.use(Sentry.Handlers.tracingHandler());
 
 app.use(express.json());
 app.use(cors());
@@ -30,15 +44,8 @@ app.use('/cars', express.static(`${configUpload.tmpFolder}/cars`));
 
 app.use('/api', router);
 
-app.use(
-  // eslint-disable-next-line consistent-return
-  (error: Error, request: Request, response: Response, next: NextFunction) => {
-    if (error instanceof AppError) {
-      return response.status(error.statusCode).json({ error: error.message });
-    }
+app.use(Sentry.Handlers.errorHandler());
 
-    next();
-  }
-);
+app.use(EnsureError);
 
 export default app;
