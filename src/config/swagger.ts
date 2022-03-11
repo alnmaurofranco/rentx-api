@@ -28,6 +28,10 @@ const configSwagger = {
                   },
                 },
               },
+              example: {
+                email: 'johndoe@example.com',
+                password: '123456',
+              },
             },
           },
         },
@@ -37,6 +41,103 @@ const configSwagger = {
           },
           400: {
             description: 'Email or password incorrect',
+          },
+        },
+      },
+    },
+    '/api/refresh-token': {
+      post: {
+        tags: ['Session'],
+        summary: 'Refresh token',
+        description: 'Refresh token to user',
+        requestBody: {
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  token: {
+                    type: 'string',
+                  },
+                },
+              },
+              example: {
+                token:
+                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFwcC5yZW50eC5kZXYiLCJpYXQiOjE2MzY3NzI2MTgsImV4cCI6MTYzOTM2NDYxOCwic3ViIjoiZDJhNDFjNzktNDU1Yy00YmZmLTlmMzYtZDcyODM4M2Q1ZGRmIn0.-Be_KJorK_TtOb96xF0M9HIWYlfg2CEhsNRVCjR32jY',
+              },
+            },
+          },
+        },
+        responses: {
+          200: {
+            description: 'Success',
+          },
+          400: {
+            description: 'jwt malformed or jwt must be provided',
+          },
+        },
+      },
+    },
+    '/api/password/forgot': {
+      post: {
+        tags: ['Session'],
+        summary: 'Forgot password',
+        description: 'Forgot password',
+        requestBody: {
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  email: {
+                    type: 'string',
+                  },
+                },
+              },
+              example: {
+                token: 'johndoe@example.com',
+              },
+            },
+          },
+        },
+        responses: {
+          200: {
+            description: 'Success',
+          },
+          400: {
+            description: 'User does not exists',
+          },
+        },
+      },
+    },
+    '/api/password/reset': {
+      post: {
+        tags: ['Session'],
+        summary: 'Reset password',
+        description: 'Reset password',
+        requestBody: {
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  password: {
+                    type: 'string',
+                  },
+                },
+              },
+              example: {
+                password: '12345678',
+              },
+            },
+          },
+        },
+        responses: {
+          200: {
+            description: 'Success',
+          },
+          400: {
+            description: 'Token invalid or token expired',
           },
         },
       },
