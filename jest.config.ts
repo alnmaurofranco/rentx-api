@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { pathsToModuleNameMapper } from 'ts-jest/utils';
+
 import { compilerOptions } from './tsconfig.json';
 
 export default {
@@ -165,4 +166,5 @@ export default {
 
   // Indicates whether each individual test should be reported during the run
   verbose: true,
+  testTimeout: 20000,
 };
