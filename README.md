@@ -5,7 +5,7 @@
 </p>
 
 <h3 align="center">
-⚡ RentalAPI - Alugel de Carros 🚗
+⚡ RentxAPI - Aluguel de automóveis 🚗
 </h3>
 
 </br>
@@ -58,15 +58,15 @@ As funcionalidades desta API são
 * Alterar imagens do carro ✅
 * Cadastrar especificação ✅
 * Listar todas as especificações ✅
-* Importar categorias por panilhas (.csv) ✅
+* Importar categorias por planilha (.csv) ✅
 * Cadastrar categoria ✅
 * Listar todas as categorias ✅
 * Consultar uma categoria ✅
 * Alterar uma categoria ✅
 * Excluir uma categoria ✅
-* Cadastrar um alugel ✅
+* Cadastrar um aluguel ✅
 * Devolver um carro alugado ✅
-* Listar alugeis do usuário ✅
+* Listar alugueis do usuário ✅
 
 ## 💻 Como executar
 Para rodar este projeto é necessário ter [Node.js](https://nodejs.org/) instalado em sua maquina. Caso não tenha ainda basta acessar o site do [Node.js](https://nodejs.org/) e instalar para continuar.
@@ -84,7 +84,7 @@ cd rentx-api
 ```bash
 yarn install
 ```
-- Após a instalação das dependencias você deve renomear os arquivos `.env.example` para `.env` e `.env.production.example` para `.env.production` que se encontram na raiz do projeto.
+- Após a instalação das dependências você deve renomear os arquivos `.env.example` para `.env` e `.env.production.example` para `.env.production` que se encontram na raiz do projeto.
 - Caso você ainda não tenha criado a base de dados, basta executar esse comando no seu SGDB:
 ````sql
 CREATE DATABASE rentxdb;
@@ -105,7 +105,7 @@ yarn start:prod
 yarn start:dev
 ```
 
-**Pronto agora API estára rodando e pode ser acessado em [`http://localhost:3333/api`](http://localhost:3333/api)**
+**Pronto agora API estará rodando e pode ser acessado em [`http://localhost:3333/api`](http://localhost:3333/api)**
 
 ### **🐳 Com Docker**
 - Copie as informações abaixo para o arquivo de `.env`.
@@ -122,7 +122,7 @@ docker-compose up -d
 ```bash
 docker logs api-rentx -f
 ```
-**Pronto agora API estára rodando com Docker e já pode ser acessado em [`http://localhost:3333/api`](http://localhost:3333/api)**
+**Pronto agora API estará rodando com Docker e já pode ser acessado em [`http://localhost:3333/api`](http://localhost:3333/api)**
 
 ## 🤔 Como contribuir
 A contribuição para projetos open-sources são sempre bem-vindas e claro o aprendizado é o retorno da contribuição.
