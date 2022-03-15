@@ -1,6 +1,8 @@
+import { AppError } from '@infra/http/errors/AppError';
 import { LocalStorageProvider } from '@infra/providers/StorageProvider/implementations/LocalStorageProvider';
 import { ICreateUserDTO } from '@modules/accounts/dtos';
 import { InMemoryUsersRepository } from '@modules/accounts/repositories/in-memory/InMemoryUsersRepository';
+
 import { CreateUser } from '../CreateUser/CreateUser';
 import { UpdateUserAvatar } from './UpdateUserAvatar';
 
@@ -29,21 +31,24 @@ describe('Update User Avatar', () => {
   });
 
   it('Should be able to update user adding avatar', async () => {
-    await createUser.execute(user);
+    expect(async () => {
+      await createUser.execute(user);
 
-    const { id: user_id } = await usersRepository.findByEmail(user.email);
+      const { id: user_id } = await usersRepository.findByEmail(user.email);
 
-    const result = await updateUserAvatar.execute({
-      user_id,
-      avatar_file: 'avatar.jpg',
-    });
-
-    console.log('result', result);
-
-    expect(0).toBe(0);
+      await updateUserAvatar.execute({
+        user_id,
+        avatar_file: 'fake.jpg',
+      });
+    }).toBeTruthy();
   });
 
   it('Should not be able to update nonexisting user', async () => {
-    expect(0).toBe(0);
+    expect(async () => {
+      await updateUserAvatar.execute({
+        user_id: 'fake-user-id',
+        avatar_file: 'fake.jpg',
+      });
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
