@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
+import { AppError } from '@infra/http/errors/AppError';
 import { IProfileUserDTO } from '@modules/accounts/dtos/IProfileUserDTO';
 import { ProfileMapper } from '@modules/accounts/mappers/ProfileMapper';
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
@@ -23,7 +24,7 @@ export class ProfileUser {
     const user = await this.userRepository.findById(userId);
 
     if (!user) {
-      throw new Error('User not found');
+      throw new AppError('User does not exists');
     }
 
     return ProfileMapper.toDto(user);
