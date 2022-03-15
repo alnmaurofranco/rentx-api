@@ -18,7 +18,7 @@ class GetAllCategory {
   async execute(): Promise<GetAllCategoryResponse> {
     const categories = await this.categoriesRepository.findAll();
 
-    if (categories.length < 0) {
+    if (categories.length <= 0) {
       throw new AppError('There are currently no categories.', 400);
     }
 
