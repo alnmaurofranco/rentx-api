@@ -1,3 +1,4 @@
+import { AppError } from '@infra/http/errors/AppError';
 import { InMemoryCategoriesRepository } from '@modules/cars/repositories/in-memory/InMemoryCategoriesRepository';
 
 import { CreateCategory } from '../CreateCategory/CreateCategory';
@@ -33,13 +34,12 @@ describe('Get All Category', () => {
   });
 
   it('Should not be able to get all categorys with empty array', async () => {
-    const categories = await getAllCategory.execute();
-
-    expect(categories.length).toBe(0);
-    expect(categories).toEqual([]);
+    expect(async () => {
+      await getAllCategory.execute();
+    }).rejects.toHaveProperty('message', 'There are currently no categories.');
 
     expect(async () => {
       await getAllCategory.execute();
-    }).toBeTruthy();
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
