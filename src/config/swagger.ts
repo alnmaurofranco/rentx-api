@@ -1,11 +1,11 @@
 const configSwagger = {
   openapi: '3.0.0',
   info: {
-    title: 'RentalX Documentation',
-    description: 'This is an API Rent',
+    title: 'Rentx Documentation',
+    description: 'This is an API Rentx',
     version: '1.0.0',
     contact: {
-      email: 'johndoe@domain.com',
+      email: 'alanmfrancodev@hotmail.com',
     },
   },
   paths: {
@@ -210,6 +210,26 @@ const configSwagger = {
           },
           400: {
             description: 'User does not exists',
+          },
+        },
+      },
+    },
+    '/api/profile': {
+      get: {
+        tags: ['Account'],
+        summary: 'User profile',
+        description: 'User profile',
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        responses: {
+          200: {
+            description: 'Success',
+          },
+          400: {
+            description: 'Token invalid or user does not exists',
           },
         },
       },
