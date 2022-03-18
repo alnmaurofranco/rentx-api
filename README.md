@@ -15,11 +15,11 @@
 </p>
 
 ## 📖**Sobre**
-O projeto consiste em uma API para alugueis de automôveis, ela vem
-para solucionar os problemas que muitos estacionamentos enfrentam sem uma aplicação no dia a dia para fazer o gerenciamento dos seus serviços de alugueis, ou seja, a solução visa vem a ajudar tanto o usuário final como os donos de estacionamento, por que o usuário final tem mais práticidade para acertar seu alugel.
+O projeto consiste em uma API para alugueis de automóveis, ela vem
+para solucionar os problemas que muitos estacionamentos enfrentam sem uma aplicação no dia a dia para fazer o gerenciamento dos seus serviços de alugueis, ou seja, a solução visa ajudar tanto o usuário final como também os donos de estacionamento, por que o usuário final tem mais praticidade para acertar seu aluguel.
 
 ## 📕 **Documentação**
-A nossa documentação está disponível para ser consultada em <a href="http://localhost:3333/api-docs" target="_blank">http://localhost:3333/api-docs</a>
+A nossa documentação está disponível para ser consultada em <a href="http://18.228.171.203/api-docs" target="_blank">http://18.228.171.203/api-docs</a>
 
 
 ## 🚀 **Tecnologias**
@@ -75,7 +75,12 @@ As funcionalidades desta API são
 ## 💻 **Como executar**
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 ### 📋 *Pré-requisitos*
-Para rodar este projeto é necessário ter [Node.js](https://nodejs.org/) instalado em sua maquina. Caso não tenha ainda basta acessar o site do [Node.js](https://nodejs.org/) e instalar para continuar.
+- Node.js
+  - Para rodar este projeto é necessário ter [Node.js](https://nodejs.org/) instalado em sua maquina. Caso não tenha ainda basta acessar o site do [Node.js](https://nodejs.org/) e instalar para continuar.
+- Docker
+  - O projeto pode ser executado com Docker, para isso você deve ter ele em sua maquina local para executar o projeto e caso você queria instalar o Docker para Ubuntu/Windows vou deixar dois links abaixo;
+  - https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
+  - https://docs.docker.com/desktop/windows/install/
 
 ### 🔧 *Instalação*
 
