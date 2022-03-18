@@ -14,11 +14,15 @@
 <img src=".github/screens/demo@screen.png" alt="demostração" />
 </p>
 
-## 👀 Documentação
+## 📖**Sobre**
+O projeto consiste em uma API para alugueis de automôveis, ela vem
+para solucionar os problemas que muitos estacionamentos enfrentam sem uma aplicação no dia a dia para fazer o gerenciamento dos seus serviços de alugueis, ou seja, a solução visa vem a ajudar tanto o usuário final como os donos de estacionamento, por que o usuário final tem mais práticidade para acertar seu alugel.
+
+## 📕 **Documentação**
 A nossa documentação está disponível para ser consultada em <a href="http://localhost:3333/api-docs" target="_blank">http://localhost:3333/api-docs</a>
 
 
-## 🚀 Tecnologias
+## 🚀 **Tecnologias**
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 * [TypeScript](https://typescriptlang.org) - TypeScript extends JavaScript by adding types to the language.
 * [Node.js](https://nodejs.org/en/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
@@ -45,7 +49,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 <img src="https://cdn.svgporn.com/logos/yarn.svg" alt="yarn" width="45" height="45" style="margin-left: 5px;"/>
 </p>
 
-## 🎉 Funcionalidades
+## 🎉 **Funcionalidades**
 As funcionalidades desta API são
 * Cadastro do usuário ✅
 * Autenticação do usuário ✅
@@ -68,8 +72,12 @@ As funcionalidades desta API são
 * Devolver um carro alugado ✅
 * Listar alugueis do usuário ✅
 
-## 💻 Como executar
+## 💻 **Como executar**
+Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
+### 📋 *Pré-requisitos*
 Para rodar este projeto é necessário ter [Node.js](https://nodejs.org/) instalado em sua maquina. Caso não tenha ainda basta acessar o site do [Node.js](https://nodejs.org/) e instalar para continuar.
+
+### 🔧 *Instalação*
 
 - Clone este repositório com comando
 ```bash
@@ -79,7 +87,7 @@ git clone https://github.com/alnmaurofranco/rentx-api
 ```bash
 cd rentx-api
 ```
-### **🔥 Sem Docker**
+#### 🔥 ***Sem Docker***
 - Instale as dependências do projeto com (yarn ou npm) nesse exemplo estou usando **yarn**
 ```bash
 yarn install
@@ -89,26 +97,36 @@ yarn install
 ````sql
 CREATE DATABASE rentxdb;
 ````
-- Dentro do `.env` agora você coloca as informações do seu banco de dados.
+- Dentro do arquivo `.env` você coloca as informações do seu banco de dados.
 ```bash
+# Exemplo
 DB_USERNAME="user" # nome de usuário do banco de dados
 DB_PASSWORD="password" # senha de usuário do banco de dados
 DB_NAME="rentxdb" # mantenha esse nome caso tenha executado o primeiro comando, caso contrario altere pelo nome escolhido.
 ```
-- Para produção você vai precisar alterar o arquivo `.env.production` e colocar suas informações, e após você deve executar o comando
+- Feito as modificações anteriores, vamos agora executar o comando que roda as nossas migrations.
+```
+yarn db:migrate
+```
+- Em **produção** você vai precisar alterar o arquivo `.env.production`, coloque suas informações e após você deve executar o comando para iniciar API em **modo de produção**.
 ```bash
 yarn start:prod
 ```
 
-- Iniciar a API:
+- Iniciar a API em modo de desenvolvimento:
 ```bash
 yarn start:dev
 ```
 
 **Pronto agora API estará rodando e pode ser acessado em [`http://localhost:3333/api`](http://localhost:3333/api)**
 
-### **🐳 Com Docker**
-- Copie as informações abaixo para o arquivo de `.env`.
+#### ***🐳 Com Docker***
+- Instale as dependências do projeto com (yarn ou npm) nesse exemplo estou usando **yarn**
+```bash
+yarn install
+```
+- Após a instalação das dependências você deve renomear os arquivos `.env.example` para `.env` e `.env.production.example` para `.env.production` que se encontram na raiz do projeto.
+- Copie as informações abaixo para o arquivo `.env`.
 ```bash
 DB_USERNAME="docker"
 DB_PASSWORD="docker"
@@ -124,8 +142,20 @@ docker logs api-rentx -f
 ```
 **Pronto agora API estará rodando com Docker e já pode ser acessado em [`http://localhost:3333/api`](http://localhost:3333/api)**
 
-## 🤔 Como contribuir
-A contribuição para projetos open-sources são sempre bem-vindas e claro o aprendizado é o retorno da contribuição.
+### ⚙️ Executando os testes
+
+- Primeiramente para você conseguir rodar os testes sem problemas, você deve criar um banco de dados para realizar os teste
+````sql
+CREATE DATABASE rentxdb_test;
+````
+- Em seguida você vai precisar configurar com as suas informações o arquivo de ambiente de testes `.env.test`
+- Tendo feito tudo agora vamos rodar os testes da aplicação e pronto você já tem os seus testes configurado.
+````
+yarn test
+````
+
+## 🤔 **Como contribuir**
+A contribuição para projetos open-sources são sempre bem-vindas!
 - Faça um fork desse repositório;
 - Cria uma branch com a sua feature: `git checkout -b minha-feature`;
 - Faça commit das suas alterações: `git commit -m '✨ feat(minha-feature): Minha nova feature'`;
@@ -133,5 +163,9 @@ A contribuição para projetos open-sources são sempre bem-vindas e claro o apr
 
 Depois que o merge da sua pull request for feito, você pode deletar a sua branch.
 
+## 📄 **Licença**
+
+Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](LICENSE) para detalhes.
+
 ---
-Feito com 💚 by AlanM Franco
+Feito com 💚 by [Alan Mauro Franco](https://github.com/alnmaurofranco)
