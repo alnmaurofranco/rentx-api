@@ -1,3 +1,4 @@
+import { AppError } from '@infra/http/errors/AppError';
 import { ICreateUserDTO } from '@modules/accounts/dtos';
 import { InMemoryUsersRepository } from '@modules/accounts/repositories/in-memory/InMemoryUsersRepository';
 
@@ -40,5 +41,29 @@ describe('Create User', () => {
       await createUser.execute(user);
       await createUser.execute(user);
     }).toBeTruthy();
+
+    expect(async () => {
+      const user: ICreateUserDTO = {
+        name: 'John Test',
+        email: 'johntest@example.com',
+        password: '1234',
+        driver_license: '009876',
+      };
+
+      await createUser.execute(user);
+      await createUser.execute(user);
+    }).rejects.toBeInstanceOf(AppError);
+
+    expect(async () => {
+      const user: ICreateUserDTO = {
+        name: 'John Test',
+        email: 'johntest@example.com',
+        password: '1234',
+        driver_license: '009876',
+      };
+
+      await createUser.execute(user);
+      await createUser.execute(user);
+    }).rejects.toMatchObject({ message: 'User already exists.' });
   });
 });
