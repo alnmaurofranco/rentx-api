@@ -15,7 +15,8 @@
     "test": "dotenv -e .env.test jest --runInBand --detectOpenHandles",
     "seed:admin": "tsnd -r tsconfig-paths/register src/infra/typeorm/seeds/admin.ts",
     "create:pm2:app": "NODE_ENV=production pm2 start dist/infra/http/server.js --name rentx-api",
-    "stop:app": "pm2 stop rentx-api"
+    "stop:app": "pm2 stop rentx-api",
+    "deploy": "sh ./scripts/run-deploy.sh"
   },
   "license": "MIT",
   "dependencies": {
