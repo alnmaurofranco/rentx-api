@@ -20,6 +20,8 @@ createConnectionTypeORM();
 
 const app: express.Application = express();
 
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(configSwagger));
+
 app.use(RateLimiter);
 
 Sentry.init({
@@ -36,8 +38,6 @@ app.use(Sentry.Handlers.tracingHandler());
 
 app.use(express.json());
 app.use(cors());
-
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(configSwagger));
 
 app.use('/avatar', express.static(`${configUpload.tmpFolder}/avatar`));
 app.use('/cars', express.static(`${configUpload.tmpFolder}/cars`));
