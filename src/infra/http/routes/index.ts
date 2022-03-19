@@ -11,7 +11,7 @@ import { specificationsRouter } from './specifications.routes';
 
 const router = Router();
 
-router.get('/', (req, res) => res.send('Welcome API'));
+router.get('/', (req, res) => res.send('Welcome to RentxAPI v1.0'));
 
 router.use(authenticateRouter);
 router.use('/profile', profileRouter);
