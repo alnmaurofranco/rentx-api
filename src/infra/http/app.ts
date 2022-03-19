@@ -42,6 +42,8 @@ app.use(cors());
 app.use('/avatar', express.static(`${configUpload.tmpFolder}/avatar`));
 app.use('/cars', express.static(`${configUpload.tmpFolder}/cars`));
 
+app.get('/', (request, response) => response.redirect('/api-docs'));
+
 app.use('/api', router);
 
 app.use(Sentry.Handlers.errorHandler());
