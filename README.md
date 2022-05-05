@@ -170,7 +170,7 @@ Depois que o merge da sua pull request for feito, você pode deletar a sua branc
 
 ## 📄 **Licença**
 
-Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](LICENSE) para detalhes.
+Este projeto está sob a licença MIT - veja o arquivo [LICENSE.md](LICENSE) para detalhes.
 
 ---
 Feito com 💚 by [Alan Mauro Franco](https://github.com/alnmaurofranco)
